@@ -20,9 +20,23 @@ export const Container = styled.header`
     gap: 3.2rem;
   }
 
-  > div:nth-child(2) {
+  > div:has(input) {
     border: none;
     background-color: #0D1D25;
+  }
+
+  > .linksDishes {
+    a {
+      width: 21rem;
+      height: 5.6rem;
+      color: white;
+      background-color: #750310;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      font-size: 1.6rem;
+    }
   }
 `;
 
