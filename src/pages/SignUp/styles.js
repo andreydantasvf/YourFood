@@ -17,7 +17,7 @@ export const Container = styled.div`
 
 export const Form = styled.form`
   max-width: 47rem;
-  width: 100%;
+  width: 90%;
   padding: 6.4rem 3.2rem;
   background: #001119;
   border-radius: 1.6rem;
@@ -29,6 +29,7 @@ export const Form = styled.form`
 
   > div {
     margin-bottom: 3.2rem;
+    width: auto;
   }
 
   > a {
