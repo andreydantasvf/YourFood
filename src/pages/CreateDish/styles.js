@@ -9,6 +9,7 @@ export const Container = styled.div`
   grid-template-areas: "header" "content" "footer";
 
   > main {
+    height: 100%;
     grid-area: content;
     margin-top: 3.2rem;
     padding: 0 8rem;
@@ -109,14 +110,33 @@ export const Form = styled.form`
     }
   }
 
-  > button {
-    align-self: flex-end;
+  > .buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
     margin-top: 2.4rem;
     margin-bottom: 7rem;
-    background-color: rgba(255, 255, 255, 0.1);
-    border: 1px solid white;
-    border-radius: 0.5rem;
-    padding: 1.2rem 8.6rem;
-    color: white;
+
+    select {
+      padding: 1.2rem 8.6rem;
+      background-color: rgba(255, 255, 255, 0.1);
+      border: 1px solid white;
+      border-radius: 0.5rem;
+      color: white;
+      font-family: 'Poppins', sans-serif;
+
+      & * {
+        background: #1a2328;
+      }
+    }
+
+    button {
+      background-color: rgba(255, 255, 255, 0.1);
+      border: 1px solid white;
+      border-radius: 0.5rem;
+      padding: 1.2rem 8.6rem;
+      color: white;
+    }
   }
 `;

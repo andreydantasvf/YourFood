@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { BiUpload } from "react-icons/bi";
 
 import { api } from "../../services/api";
@@ -15,10 +16,13 @@ export function CreateDish() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState(0);
+  const [category, setCategory] = useState("");
   const [image, setImage] = useState(null);
 
   const [ingredients, setIngredients] = useState([]);
   const [newIngredient, setNewIngredient] = useState("");
+
+  const navigation = useNavigate();
 
   function handleAddIngredient() {
     if (ingredients.includes(newIngredient)) {
@@ -32,14 +36,30 @@ export function CreateDish() {
     setIngredients(prevState => prevState.filter(ingredient => ingredient !== deleted));
   }
 
-  function handleNewDish(event) {
-    event.preventDefault();
+  function handleNewDish() {
+    if (!title) {
+      return alert("Adicione o nome do prato!");
+    }
+    if (!description) {
+      return alert("Adicione a descrição do prato!");
+    }
+    if (!price) {
+      return alert("Adicione o valor do prato!");
+    }
+    if (!category) {
+      return alert("Adicione a categoria do prato!");
+    }
+    if (!image) {
+      return alert("Adicione a imagem do prato!");
+    }
+
     const dishUpload = new FormData();
 
     dishUpload.append("image", image);
     dishUpload.append("title", title);
     dishUpload.append("description", description);
     dishUpload.append("price", price);
+    dishUpload.append("category", category);
     dishUpload.append("ingredients", JSON.stringify(ingredients));
 
     api.post("/dishes", dishUpload, {
@@ -54,7 +74,9 @@ export function CreateDish() {
       } else {
         alert("Não foi possível criar o prato!")
       }
-    });
+    }).finally(
+      navigation(-1)
+    );
   }
 
   return (
@@ -116,7 +138,6 @@ export function CreateDish() {
                 type="number"
                 id="price"
                 onChange={e => setPrice(e.target.value)}
-                required
               />
             </label>
           </div>
@@ -131,7 +152,15 @@ export function CreateDish() {
             />
           </label>
 
-          <button onClick={handleNewDish} type="submit">Adicionar prato</button>
+          <div className="buttons">
+            <select name="category" required onChange={e => setCategory(e.target.value)}>
+              <option value="">Selecione a categoria do prato</option>
+              <option value="main">Prato principal</option>
+              <option value="drink">Bebida</option>
+              <option value="dessert">Sobremesa</option>
+            </select>
+            <button onClick={handleNewDish}>Adicionar prato</button>
+          </div>
         </Form>
       </main>
       <Footer />

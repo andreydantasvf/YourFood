@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import { RxExit } from "react-icons/rx";
@@ -18,6 +19,7 @@ export function Header({ children }) {
     navigation("/");
     signOut();
   }
+
   return (
     <Container>
       <div>
@@ -51,6 +53,7 @@ export function Header({ children }) {
           <RxExit />
         </Exit>
       </div>
-    </Container>
+
+    </Container >
   )
 }

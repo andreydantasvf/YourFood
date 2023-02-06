@@ -24,6 +24,12 @@ export default createGlobalStyle`
     outline: none;
   }
 
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
   a {
     text-decoration: none;
   }
@@ -35,5 +41,17 @@ export default createGlobalStyle`
   
   button:hover, a:hover {
     filter: brightness(.9);
+  }
+
+  .disabled {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
   }
 `;
