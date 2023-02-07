@@ -14,8 +14,7 @@ export const Container = styled.section`
   > .dishes {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 2rem;
+    gap: 4.7rem;
     flex-wrap: wrap;
   }
 `;

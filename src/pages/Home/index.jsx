@@ -17,16 +17,18 @@ export function Home() {
   const [dessertsDishes, setDessertsDishes] = useState(null);
   const [drinksDishes, setDrinksDishes] = useState(null);
 
+  const [search, setSearch] = useState("");
+
   useEffect(() => {
     async function fetchDishes() {
-      const response = await api.get(`/dishes?title=&ingredients`);
+      const response = await api.get(`/dishes?title=${search}&ingredients`);
       setMainsDishes(response.data.filter(dish => dish.category === "main"));
       setDrinksDishes(response.data.filter(dish => dish.category === "drink"));
       setDessertsDishes(response.data.filter(dish => dish.category === "dessert"));
     }
 
     fetchDishes();
-  }, []);
+  }, [search]);
 
   return (
     <Container>
@@ -34,6 +36,7 @@ export function Home() {
         <Input
           placeholder="Busque pelas opções de pratos"
           icon={SlMagnifier}
+          onChange={e => setSearch(e.target.value)}
         />
       </Header>
 
