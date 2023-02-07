@@ -13,25 +13,20 @@ import { SectionDish } from "../../components/SectionDish";
 import { Container, Banner } from "./styles";
 
 export function Home() {
-  const [dishes, setDishes] = useState([]);
-  const [mainsDishes, setMainsDishes] = useState([]);
-  const [dessertsDishes, setDessertsDishes] = useState([]);
-  const [drinksDishes, setDrinksDishes] = useState([]);
-
-  const [search, setSearch] = useState("");
+  const [mainsDishes, setMainsDishes] = useState(null);
+  const [dessertsDishes, setDessertsDishes] = useState(null);
+  const [drinksDishes, setDrinksDishes] = useState(null);
 
   useEffect(() => {
     async function fetchDishes() {
-      const response = await api.get(`/dishes?title=${search}&ingredients`);
-      setDishes(response.data);
-
-      setMainsDishes(dishes.filter(dish => dish.category === "main"));
-      setDrinksDishes(dishes.filter(dish => dish.category === "drink"));
-      setDessertsDishes(dishes.filter(dish => dish.category === "dessert"));
+      const response = await api.get(`/dishes?title=&ingredients`);
+      setMainsDishes(response.data.filter(dish => dish.category === "main"));
+      setDrinksDishes(response.data.filter(dish => dish.category === "drink"));
+      setDessertsDishes(response.data.filter(dish => dish.category === "dessert"));
     }
 
     fetchDishes();
-  }, [search]);
+  }, []);
 
   return (
     <Container>
@@ -52,8 +47,7 @@ export function Home() {
         </Banner>
 
         {
-          mainsDishes.length > 0 &&
-
+          mainsDishes &&
           <SectionDish
             title="Pratos principais"
             data={mainsDishes}
@@ -61,7 +55,7 @@ export function Home() {
         }
 
         {
-          dessertsDishes.length > 0 &&
+          dessertsDishes &&
 
           <SectionDish
             title="Sobremesas"
@@ -70,7 +64,7 @@ export function Home() {
         }
 
         {
-          drinksDishes.length > 0 &&
+          drinksDishes &&
 
           <SectionDish
             title="Bebidas"
