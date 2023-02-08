@@ -36,7 +36,9 @@ export function CreateDish() {
     setIngredients(prevState => prevState.filter(ingredient => ingredient !== deleted));
   }
 
-  function handleNewDish() {
+  function handleNewDish(event) {
+    event.preventDefault();
+    
     if (!title) {
       return alert("Adicione o nome do prato!");
     }
@@ -66,17 +68,9 @@ export function CreateDish() {
       headers: {
         "Content-Type": `multipart/form-data; boundary=${dishUpload._boundary}`
       }
-    }).then(() => {
-      alert("Prato adicionado com sucesso!");
-    }).catch(error => {
-      if (error.response) {
-        alert(error.response.data.message);
-      } else {
-        alert("Não foi possível criar o prato!")
-      }
-    }).finally(
-      navigation(-1)
-    );
+    })
+    alert("Prato adicionado com sucesso!");
+    navigation(-1)
   }
 
   return (
