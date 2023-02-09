@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import { RxExit } from "react-icons/rx";
@@ -5,10 +6,13 @@ import { GiShoppingCart } from "react-icons/gi";
 import { BiDish } from "react-icons/bi";
 
 import { useAuth } from "../../hooks/auth";
+import { api } from "../../services/api";
 
 import { Container, Exit } from "./styles";
 
 export function Header({ children }) {
+  const [cartItems, setCartItems] = useState(0);
+
   const { signOut, user } = useAuth();
   const checkUserIsAdmin = user.isAdmin == true;
 
@@ -18,6 +22,16 @@ export function Header({ children }) {
     navigation("/");
     signOut();
   }
+
+  useEffect(() => {
+    async function fetchCartItems() {
+      const response = await api.get("/cartItems");
+      const responseFiltered = response.data.filter(cartItem => cartItem.request_id === null);
+      setCartItems(responseFiltered.length);
+    }
+
+    fetchCartItems();
+  }, []);
 
   return (
     <Container>
@@ -43,9 +57,9 @@ export function Header({ children }) {
               Criar prato
             </Link>
             :
-            <Link to="">
+            <Link to="/requestDish">
               <GiShoppingCart size={24} />
-              Meu pedido (0)
+              Meu pedido ({cartItems})
             </Link>
         }
         <Exit onClick={handleSignOut}>
