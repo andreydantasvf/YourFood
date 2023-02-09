@@ -37,13 +37,11 @@ export function Header({ children }) {
     <Container>
       <div>
         <h2>YourFood</h2>
-        {
-          checkUserIsAdmin
-            ?
-            <a>Status de todos os pedidos</a>
-            :
-            <a>Status dos meus pedidos</a>
-        }
+        <Link
+          to="/requests"
+        >
+          {checkUserIsAdmin ? "Status de todos os pedidos" : "Status dos meus pedidos"}
+        </Link>
       </div>
 
       {children}

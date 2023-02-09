@@ -4,6 +4,7 @@ import { GiShoppingCart } from "react-icons/gi";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 
 import { Header } from "../../components/Header";
+import { Footer } from "../../components/Footer";
 import { BackButton } from "../../components/BackButton";
 import { Button } from "../../components/Button";
 
@@ -117,6 +118,8 @@ export function Dish() {
           </Content>
         </main>
       }
+
+      <Footer />
     </Container>
   )
 }
