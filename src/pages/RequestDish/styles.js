@@ -15,8 +15,13 @@ export const Container = styled.div`
     padding: 0 8rem;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 8rem auto;
-    grid-template-areas: "backButton BackButton" "request payment";
+    grid-template-rows: 8rem auto auto;
+    grid-template-areas: "backButton BackButton" "request payment" "createDish none";
+
+    .create-dish {
+      grid-area: createDish;
+      max-width: 50%;
+    }
   }
 `;
 
@@ -36,4 +41,34 @@ export const Request = styled.section`
 
 export const Payment = styled.section`
   grid-area: payment;
+
+  > h2 {
+    font-size: 3.2rem;
+    margin-bottom: 4.8rem;
+  }
+
+  > div {
+    width: 70%;
+    border: 1px solid #FFF;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    h2 {
+      width: 100%;
+      padding: 1.4rem 0;
+      border-bottom: 1px solid #FFF;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    img {
+      padding: 2rem;
+    }
+  }
 `;
