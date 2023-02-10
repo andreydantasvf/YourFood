@@ -12,19 +12,21 @@ export const Container = styled.div`
     height: 100%;
     grid-area: content;
     margin-top: 3.2rem;
-    padding: 0 8rem;
+    padding: 0 2rem;
+
+    @media (min-width: 1280px) {
+      padding: 0 8rem;
+    }
   }
 `;
 
 export const Banner = styled.div`
+  display: none;
+
   margin-top: 16.4rem;
   width: 100%;
   height: 26rem;
-  background: linear-gradient(180deg, #091E26 0%, #00131C 100%);
-
-  display: flex;
-  align-items: center;
-  justify-content: end;
+  background: linear-gradient(180deg, #091e26 0%, #00131c 100%);
 
   position: relative;
 
@@ -45,5 +47,11 @@ export const Banner = styled.div`
     span {
       font-size: 1.6rem;
     }
+  }
+
+  @media (min-width: 1280px) {
+    display: flex;
+    align-items: center;
+    justify-content: end;
   }
 `;

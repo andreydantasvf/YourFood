@@ -12,7 +12,11 @@ export const Container = styled.div`
     height: 100%;
     grid-area: content;
     margin-top: 3.2rem;
-    padding: 0 8rem;
+    padding: 0 2rem;
+
+    @media (min-width: 1280px) {
+      padding: 0 8rem;
+    }
   }
 `;
 
@@ -32,9 +36,8 @@ export const Form = styled.form`
   > .row-1 {
     width: 100%;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10rem;
+    flex-direction: column;
+    gap: 4rem;
 
     label[for="image"] {
       max-width: 23rem;
@@ -63,14 +66,20 @@ export const Form = styled.form`
     label {
       width: 100%;
     }
+
+    @media (min-width: 1280px) {
+      align-items: center;
+      justify-content: space-between;
+      flex-direction: row;
+      gap: 10rem;
+    }
   }
 
   > .row-2 {
     width: 100%;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10rem;
+    flex-direction: column;
+    gap: 4rem;
     margin-top: 4rem;
     margin-bottom: 3.2rem;
 
@@ -94,6 +103,13 @@ export const Form = styled.form`
       max-width: 23rem;
       width: 100%;
     }
+
+    @media (min-width: 1280px) {
+      align-items: center;
+      justify-content: space-between;
+      flex-direction: row;
+      gap: 10rem;
+    }
   }
 
   > label[for="description"] {
@@ -112,22 +128,26 @@ export const Form = styled.form`
 
   > .buttons {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 4rem;
 
     margin-top: 2.4rem;
     margin-bottom: 7rem;
 
     select {
-      padding: 1.2rem 8.6rem;
+      padding: 1.2rem 1.6rem;
       background-color: rgba(255, 255, 255, 0.1);
       border: 1px solid white;
       border-radius: 0.5rem;
       color: white;
-      font-family: 'Poppins', sans-serif;
+      font-family: "Poppins", sans-serif;
 
       & * {
         background: #1a2328;
+      }
+
+      @media (min-width: 1280px) {
+        padding: 1.2rem 8.6rem;
       }
     }
 
@@ -137,6 +157,13 @@ export const Form = styled.form`
       border-radius: 0.5rem;
       padding: 1.2rem 8.6rem;
       color: white;
+    }
+
+    @media (min-width: 1280px) {
+      align-items: center;
+      justify-content: space-between;
+      flex-direction: row;
+      gap: 0;
     }
   }
 `;

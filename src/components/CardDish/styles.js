@@ -1,12 +1,12 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  width: 30rem;
+  width: 20rem;
   padding: 5.6rem 4rem 4rem;
   background: rgba(0, 0, 0, 0.32);
-  border-radius: .8rem;
+  border-radius: 0.8rem;
   cursor: pointer;
-  
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -24,7 +24,7 @@ export const Container = styled.div`
     font-size: 2.4rem;
     text-align: center;
   }
-  
+
   > span {
     font-size: 1.4rem;
     text-align: center;
@@ -32,6 +32,10 @@ export const Container = styled.div`
 
   > .price {
     font-size: 3.2rem;
-    color: #82F3FF;
+    color: #82f3ff;
+  }
+
+  @media (min-width: 1280px) {
+    width: 30rem;
   }
 `;

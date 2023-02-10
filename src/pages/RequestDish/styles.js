@@ -12,15 +12,30 @@ export const Container = styled.div`
     height: 100%;
     grid-area: content;
     margin-top: 3.2rem;
-    padding: 0 8rem;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 8rem auto auto;
-    grid-template-areas: "backButton BackButton" "request payment" "createDish none";
+    padding: 0 2rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 
     .create-dish {
       grid-area: createDish;
       max-width: 50%;
+      margin: 4rem 0;
+      align-self: center;
+    }
+
+    @media (min-width: 1280px) {
+      padding: 0 8rem;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: 8rem auto auto;
+      grid-template-areas: "backButton BackButton" "request payment" "createDish none";
+
+      .create-dish {
+        margin: 0;
+        align-self: initial;
+      }
     }
   }
 `;
@@ -48,8 +63,8 @@ export const Payment = styled.section`
   }
 
   > div {
-    width: 70%;
-    border: 1px solid #FFF;
+    width: 100%;
+    border: 1px solid #fff;
 
     display: flex;
     align-items: center;
@@ -59,7 +74,7 @@ export const Payment = styled.section`
     h2 {
       width: 100%;
       padding: 1.4rem 0;
-      border-bottom: 1px solid #FFF;
+      border-bottom: 1px solid #fff;
 
       display: flex;
       align-items: center;
@@ -69,6 +84,10 @@ export const Payment = styled.section`
 
     img {
       padding: 2rem;
+    }
+
+    @media(min-width: 1280px) {
+      width: 70%;
     }
   }
 `;
