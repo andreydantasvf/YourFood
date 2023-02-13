@@ -52,7 +52,7 @@ Aplicação para simular um ecommerce de um restaurante, com acesso para usuári
 **Clone o Projeto e acesse o Diretório**
 
 ```bash
-$ git clone https://github.com/andreydantasvf/YourFood&& cd YourFood
+$ git clone https://github.com/andreydantasvf/YourFood && cd YourFood
 ```
 
 **Para iniciar o server da aplicação:**
