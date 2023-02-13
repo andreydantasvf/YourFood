@@ -18,6 +18,14 @@ Aplicação para simular um ecommerce de um restaurante, com acesso para usuári
 	O admistrador fica responsável por criar/remover novos pratos, e visualizar/alterar o status dos pedidos dos clientes.
 </p>
 
+**Login como Administrador:**
+<p>
+	email: adm@gmail.com
+</p>
+<p>
+	password: adm123
+</p>
+
 ## 🚀 Tecnologias
 ### Frontend:
 - React
