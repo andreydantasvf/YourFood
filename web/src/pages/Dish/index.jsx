@@ -8,8 +8,8 @@ import { Footer } from "../../components/Footer";
 import { BackButton } from "../../components/BackButton";
 import { Button } from "../../components/Button";
 
-import { api } from "../../services/api";
-import { useAuth } from "../../hooks/auth";
+import { dishes } from "../../mocks/mockDishes";
+import { user } from "../../mocks/mockUser";
 
 import { Container, Content } from "./styles"
 import { Ingredient } from "../../components/Ingredient";
@@ -18,26 +18,10 @@ export function Dish() {
   const [dish, setDish] = useState(null);
   const [count, setCount] = useState(1);
 
-  const { user } = useAuth();
-
   const params = useParams();
   const navigation = useNavigate();
 
-  async function handleDeleteDish() {
-    const confirm = window.confirm("Deseja realmente remover este prato?");
-
-    if (confirm) {
-      await api.delete(`/dishes/${params.id}`);
-      navigation(-1);
-    }
-  }
-
   async function handleAddCartItem() {
-    await api.post("/cartItems", {
-      quantity: count,
-      dish_id: params.id
-    })
-
     alert("Prato adicionado ao carrinho!");
     navigation(-1);
   }
@@ -54,8 +38,8 @@ export function Dish() {
 
   useEffect(() => {
     async function fetchDish() {
-      const response = await api.get(`dishes/${params.id}`);
-      setDish(response.data);
+      const data = dishes.find(dish => dish.id == params.id);
+      setDish(data);
     }
 
     fetchDish();
@@ -71,7 +55,7 @@ export function Dish() {
           <BackButton />
 
           <Content>
-            <img src={`${api.defaults.baseURL}/files/${dish.image}`} alt={`Imagem do prato ${dish.title}`} />
+            <img src={dish.image} alt={`Imagem do prato ${dish.title}`} />
             <div>
               <h1>{dish.title}</h1>
               <p>{dish.description}</p>
@@ -118,7 +102,6 @@ export function Dish() {
           </Content>
         </main>
       }
-
       <Footer />
     </Container>
   )

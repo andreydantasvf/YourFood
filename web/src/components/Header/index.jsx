@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import { RxExit } from "react-icons/rx";
@@ -6,16 +6,14 @@ import { GiShoppingCart, GiHamburgerMenu } from "react-icons/gi";
 import { BiDish } from "react-icons/bi";
 import { FiX } from 'react-icons/fi'
 
-import { useAuth } from "../../hooks/auth";
-import { api } from "../../services/api";
+import { user } from "../../mocks/mockUser";
 
 import { Container, Exit, Hamburger } from "./styles";
 
 export function Header({ children }) {
-  const [cartItems, setCartItems] = useState(0);
+  const [cartItems] = useState(2);
   const [showMenu, setShowMenu] = useState(false);
 
-  const { signOut, user } = useAuth();
   const checkUserIsAdmin = user.isAdmin == true;
 
   const navigation = useNavigate();
@@ -28,16 +26,6 @@ export function Header({ children }) {
   function handleShowMenu() {
     setShowMenu(!showMenu);
   }
-
-  useEffect(() => {
-    async function fetchCartItems() {
-      const response = await api.get("/cartItems");
-      const responseFiltered = response.data.filter(cartItem => cartItem.request_id === null);
-      setCartItems(responseFiltered.length);
-    }
-
-    fetchCartItems();
-  }, []);
 
   return (
     <Container>

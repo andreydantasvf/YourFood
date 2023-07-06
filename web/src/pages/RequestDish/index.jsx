@@ -7,7 +7,7 @@ import { BackButton } from "../../components/BackButton";
 import { Button } from "../../components/Button";
 import { CartItem } from "../../components/CartItem";
 
-import { api } from "../../services/api";
+import { cart } from "../../mocks/mockCart";
 
 import { Container, Request, Payment } from "./styles"
 import Pix from "../../assets/pix.png";
@@ -20,29 +20,14 @@ export function RequestDish() {
   const navigation = useNavigate();
 
   async function handleDeleteCartItem(id) {
-    await api.delete(`cartItems/${id}`);
-    fetchCartItems();
-  }
-
-  function handleUpdateCartItems(request_id) {
-    cartItems.forEach(async cartItem => {
-      await api.patch(`cartItems/${cartItem.id}`, {
-        request_id
-      })
-    })
+    const dishes = cartItems.filter(item => item.id !== id);
+    fetchCartItems(dishes);
   }
 
   async function handleCreateRequestDish() {
     try {
-      const request_id = await api.post("/requests", {
-        status: "Preparando",
-        paymentMethod: "Pix"
-      })
-
-      handleUpdateCartItems(request_id.data);
-
       alert("Pedido realizado com sucesso!");
-      
+
       navigation(-1);
     } catch (error) {
       if (error.response) {
@@ -53,16 +38,15 @@ export function RequestDish() {
     }
   }
 
-  async function fetchCartItems() {
-    const response = await api.get("/cartItems");
-    const responseFiltered = await response.data.filter(cartItem => cartItem.request_id === null);
+  function fetchCartItems(cart) {
+    const responseFiltered = cart.filter(cartItem => cartItem.request_id === null);
     const prices = responseFiltered.map(cartItem => cartItem.dish[0].price * cartItem.quantity);
     setPriceRequest(prices.reduce((accumulator, price) => accumulator + price));
     setCartItems(responseFiltered);
   }
 
   useEffect(() => {
-    fetchCartItems();
+    fetchCartItems(cart);
   }, []);
 
   return (

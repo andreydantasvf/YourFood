@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { SlMagnifier } from "react-icons/sl"
 
-import { api } from "../../services/api";
+import { dishes } from "../../mocks/mockDishes";
 
 import BannerImg from "../../assets/banner.png";
 
@@ -21,10 +21,9 @@ export function Home() {
 
   useEffect(() => {
     async function fetchDishes() {
-      const response = await api.get(`/dishes?title=${search}&ingredients`);
-      setMainsDishes(response.data.filter(dish => dish.category === "main"));
-      setDrinksDishes(response.data.filter(dish => dish.category === "drink"));
-      setDessertsDishes(response.data.filter(dish => dish.category === "dessert"));
+      setMainsDishes(dishes.filter(dish => dish.category === "main"));
+      setDrinksDishes(dishes.filter(dish => dish.category === "drink"));
+      setDessertsDishes(dishes.filter(dish => dish.category === "dessert"));
     }
 
     fetchDishes();

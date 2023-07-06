@@ -1,33 +1,20 @@
-import { useEffect, useState } from "react";
-
 import { Request } from "../../components/Request";
 import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
 import { BackButton } from "../../components/BackButton";
 
-import { api } from "../../services/api";
+import { requests } from "../../mocks/mockRequests";
 
 import { Container } from "./styles";
 
 export function Requests() {
-  const [requests, setRequests] = useState(null);
-
-  useEffect(() => {
-    async function fetchRequests() {
-      const response = await api.get("/requests");
-      setRequests(response.data);
-    }
-
-    fetchRequests();
-  }, []);
-
   return (
     <Container>
       <Header />
 
       <main>
         <BackButton />
-        
+
         <h2>Pedidos</h2>
         <table>
           <thead>
